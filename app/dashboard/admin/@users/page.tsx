@@ -18,9 +18,9 @@ const AdminUserControl = async () => {
             <div>
                 <Link href="/user-incr">Add User +</Link>
             </div>
-            <div className="flex items-center justfy-center flex-row">
+            <div className="flex items-center justfy-center gap-2 flex-row">
             {data.map((item : User) => (
-                <div className="flex flex-col items-center border-2 border-md border-slate-200 p-3 justify-center">
+                <div className="flex flex-col items-center border-2 rounded-md border-md border-slate-200 p-3 justify-center">
                     <div className="flex flex-col items-center justify-center">
                         <h3>{item.username}</h3>
                         <h3>{item.email}</h3>
@@ -33,6 +33,7 @@ const AdminUserControl = async () => {
                 </div>
             ))}
             </div>
+            
         </div>
     </>);
 }
