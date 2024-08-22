@@ -12,6 +12,7 @@ export interface Course {
 export interface User{
     username : string
     password : string
+    _id : string
     firstname : string
     lastname : string
     email : string
