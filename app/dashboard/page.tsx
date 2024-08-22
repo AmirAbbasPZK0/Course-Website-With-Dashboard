@@ -1,40 +1,42 @@
-import { verifyToken } from "@/configs/auth"
-import { cookies } from "next/headers"
-import { Course } from "@/interface/first"
-import { DataBaseConnection } from "@/utils/db"
-import userModel from "@/models/user"
+"use client"
 
+import {User} from '../../interface/first'
+import { useEffect, useState } from "react"
 
-const DashboardPage = async () => {
+const DashboardPage = () => {
     
-    DataBaseConnection()
+    const [data , setData] = useState<User | null>(null)
+    const [loading , setLoading] = useState(false)
 
-    const token = cookies().get("token")?.value
+    useEffect(()=>{
+        setLoading(true)
+        fetch("http://localhost:3000/api/auth/getme" , {method : "GET"})
+        .then(res => {
+            return res.json() 
+        })
+        .then(data => {
+            setData(data)
+            setLoading(false)
+            // Redux Update
+        })
+    },[])
 
-    const tokenPayloadData : any = verifyToken(token!)
+    if(loading)
+        return <div>Loading...</div>
 
-    const user = await userModel.findOne({
-        email : tokenPayloadData?.email
-    },
-        "firstname lastname"
-    )
-
-    
     return (<>
-       {tokenPayloadData ? (
-            <div className="flex items-center flex-col gap-2 h-[100vh] justify-center">
-                <p>firstname : {user.firstname} | lastname : {user.lastname}</p>
-                <h1 className="text-[70px]">{user.firstname}'s Dashboard</h1>
-                <div className="flex items-center flex-col justify-center">
-                    <h3>Your Courses</h3>
-                    <h3>Comming Soon ....</h3>
+        <div className="flex align-center text-center justify-center flex-col p-4">
+            <h1 className="p-3 text-[50px]">
+                Dashboard
+            </h1>
+                <h2 className={`${data?.role === "USER" ? "bg-green-400" : "bg-blue-500"} p-2 text-[20px]  rounded-md`}>{data?.role}</h2>
+                <div className="p-3"> 
+                <div className='gap-5'>
+                    <h2 className='text-[20px]'>Username : {data?.username}</h2>
+                    <h2 className='text-[20px]'>Password : {data?.email}</h2>
                 </div>
             </div>
-       ) : (
-        <div>
-            Your Token is Not Valid
         </div>
-       )}
     </>);
 }
  

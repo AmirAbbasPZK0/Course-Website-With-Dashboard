@@ -8,7 +8,8 @@ const tokenHandler = () => {
     
     if(cookies().has("token")){
         let token = cookies().get('token')?.value
-        return verifyToken(token!)
+        let isVerified = verifyToken(token!)
+        return isVerified
     }
 
 }

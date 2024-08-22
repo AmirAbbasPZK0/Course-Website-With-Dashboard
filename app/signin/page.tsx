@@ -1,12 +1,29 @@
 "use client"
 
-import { useState } from "react";
+import { useState , useEffect} from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
+import tokenHandler from "@/actions/action";
 
 const SignInPage = () => {
 
     const router = useRouter()
+
+    const isAuthenticate = async () : Promise<any> => {
+        const result = tokenHandler()
+        return result
+    }
+
+    useEffect(()=>{
+        isAuthenticate().then(res => {
+            if(res){
+                router.push("/dashboard")
+            }
+        }).catch(err => {
+            console.log(err)
+        })
+    },[])
+    
 
     const {register , handleSubmit} = useForm()
     const [loading , setLoading] = useState(false)

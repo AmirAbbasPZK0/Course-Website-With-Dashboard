@@ -1,15 +1,18 @@
 import { Metadata } from "next";
 import React from "react";
 
+
+
 export const metadata : Metadata = {
     title : "Dashboard",
-    description : "Dahboard"
+    description : "Dashboard"
 }
 
 
-const DashboardPage = ({children} : {children : React.ReactNode}) => {
+const DashboardPage = async ({children , users} : {children : React.ReactNode , users : React.ReactNode}) => {
     return (<>
         {children}
+        {users}
     </>);
 }
  
