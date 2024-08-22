@@ -33,7 +33,7 @@ const DashboardPage = () => {
                 <div className="p-3"> 
                 <div className='gap-5'>
                     <h2 className='text-[20px]'>Username : {data?.username}</h2>
-                    <h2 className='text-[20px]'>Password : {data?.email}</h2>
+                    <h2 className='text-[20px]'>Email : {data?.email}</h2>
                 </div>
             </div>
         </div>

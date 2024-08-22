@@ -24,8 +24,6 @@ export async function GET(){
             return NextResponse.json({message : "User is not Defined"})
         }
 
-    }else{
-        redirect("/")
     }
 
 }
