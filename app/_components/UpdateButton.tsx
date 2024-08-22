@@ -16,7 +16,7 @@ const UpdateButton = ({children , id} : Props) => {
     return (<>
         <button onClick={()=>{
             router.push(`/user-edit/${id}`)
-        }} className="p-2 m-2 rounded-sm">{children}</button>
+        }} className="p-2 m-2 bg-orange-400 rounded-sm">{children}</button>
     </>);
 }
  

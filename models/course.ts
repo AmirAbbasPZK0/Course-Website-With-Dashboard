@@ -27,7 +27,8 @@ const courseSchema = new mongoose.Schema<Course>({
     },
     teacher : {
         type : mongoose.Types.ObjectId,
-        ref : "User"
+        ref : "User",
+        required : true
     },
     image : {
         data : Buffer,

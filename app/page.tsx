@@ -20,7 +20,7 @@ const Home = async () => {
               <div className="flex items-center flex-col py-3 justify-center">
                 <h1 className="text-[20px]">{item.title}</h1>
                 <h4>{item.price} تومان</h4>
-                <p>{item.teacher.username}</p>
+                <p>{item?.teacher?.username}</p>
               </div>
             </div>
           ))}

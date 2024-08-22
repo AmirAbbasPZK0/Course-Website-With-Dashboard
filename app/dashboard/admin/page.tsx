@@ -24,8 +24,8 @@ const AdminPage = () => {
     }
     
     return (<>
-        <div className="flex items-center justify-center h-[90vh]">
-            <h1>Admin Panel</h1>
+        <div>
+            <h1 className="text-blue-300 text-[50px]">Admin Panel</h1>
         </div>
     </>);
 }
