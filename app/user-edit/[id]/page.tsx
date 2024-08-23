@@ -1,18 +1,16 @@
 "use client"
 
-import { User } from "@/interface/first";
 import { useEffect, useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 
 const UpdateUserPage = ({params} : {params : {id : string}}) => {
 
-
     const router = useRouter()
-    const [data , setData] = useState<User | null>(null)
     const [loading , setLoading] = useState<boolean>(false)
 
     useEffect(()=>{
+
         fetch(`http://localhost:3000/api/users/${params.id}` , {method : "GET"})
         .then(res => {
             return res.json()
@@ -27,6 +25,7 @@ const UpdateUserPage = ({params} : {params : {id : string}}) => {
     const {register , handleSubmit , setValue} = useForm()
 
     const onSubmit = (e : FieldValues) =>{
+        setLoading(false)
         fetch(`http://localhost:3000/api/users/${params.id}` , {
             method : "PUT",
             headers : {
@@ -38,9 +37,9 @@ const UpdateUserPage = ({params} : {params : {id : string}}) => {
             return res.json()
         })
         .then(data => {
-            console.log(data)
             router.replace("/dashboard/admin")
             router.refresh()
+            setLoading(true)
         })
     }
 
@@ -50,7 +49,7 @@ const UpdateUserPage = ({params} : {params : {id : string}}) => {
                 <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
                     <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                         <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                            Login
+                            Edit User
                         </h1>
                         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 md:space-y-6" action="#">
                             <div>
@@ -62,8 +61,9 @@ const UpdateUserPage = ({params} : {params : {id : string}}) => {
                                 <input type="text" {...register("email")} placeholder="Password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                             </div>
                             <div>
+                            <label  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Role</label>
                             <select
-                                className="text-slate-900"
+                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-[100px] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 id="selectmethod"
                                 defaultValue=""
                                 {...register("role", { required: true })}

@@ -9,16 +9,22 @@ import { useEffect, useState } from "react"
 const AdminUserControl = () => {
 
     const [data , setData] = useState([])
+    const [loading , setLoading] = useState(false)
 
     useEffect(()=>{
+        setLoading(true)
         fetch("http://localhost:3000/api/users")
         .then(res => {
             return res.json()
         })
-        .then(data => 
+        .then(data => {
+            setLoading(false)  
             setData(data)
-        )
+        })
     },[])
+
+    if(loading)
+        return <div>Loading...</div>
 
     return (<>
         <div className="flex flex-col items-center gap-2 py-4">

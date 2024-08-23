@@ -6,13 +6,13 @@ const AdminLayout = ({children , users , courses} : {children : ReactNode , user
         <div className="flex flex-col items-center py-[10px] justify-center">
             {children}
             <div>
-                <h1 className="flex flex-col">Users</h1>
+                <h1 className="flex text-[20px] flex-col">Users -&gt;</h1>
                 <div className="flex flex-col items-center">
                     {users}
                 </div>
             </div>
             <div>
-                <h1 className="flex flex-col">Courses</h1>
+                <h1 className="flex text-[20px] flex-col">Courses -&gt;</h1>
                 <div className="flex flex-col items-center">
                     {courses}
                 </div>

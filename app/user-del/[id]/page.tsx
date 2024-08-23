@@ -22,7 +22,7 @@ const UpdateUserPage = ({params} : {params : {id : string}}) => {
         })
     },[])
     
-    const { handleSubmit , setValue} = useForm()
+    const { handleSubmit } = useForm()
 
     const onSubmit = (e : FieldValues) =>{
         setLoading(true)
