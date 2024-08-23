@@ -1,5 +1,6 @@
 "use client"
 
+import Link from 'next/link'
 import {User} from '../../interface/first'
 import { useEffect, useState } from "react"
 
@@ -34,6 +35,13 @@ const DashboardPage = () => {
                 <div className='gap-5'>
                     <h2 className='text-[20px]'>Username : {data?.username}</h2>
                     <h2 className='text-[20px]'>Email : {data?.email}</h2>
+                    {
+                        data?.role === "ADMIN" ? (
+                            <div className='p-4'>
+                                <Link href={"/dashboard/admin"} className='p-3 m-2 rounded-md bg-blue-500'>Go To Admin Panel</Link>
+                            </div>
+                        ) : ("")
+                    }
                 </div>
             </div>
         </div>
