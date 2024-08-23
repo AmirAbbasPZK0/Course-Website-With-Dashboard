@@ -1,8 +1,6 @@
 import courseModel from "@/models/course";
 import { NextResponse } from "next/server";
 import { DataBaseConnection } from "@/utils/db";
-import userModel from "@/models/user";
-
 
 export async function GET(req : Request , {params} : {params : {id : string}}){
     
@@ -40,6 +38,16 @@ export async function PUT(req : Request , {params} : {params : {id : string}}){
 
 }
 
-export async function DELETE(){
+export async function DELETE(_ : any , {params} : {params : {id : string}}){
+    
+    DataBaseConnection()
+
+    const deleteCourse = await courseModel.findOneAndDelete({_id : params.id})
+
+    if(deleteCourse){
+        return NextResponse.json({message : "Course has been deleted"})
+    }else{
+        return NextResponse.json({message : 'Faild to delete course'})
+    }
 
 }

@@ -34,15 +34,17 @@ const AdminUserControl =  () => {
             <div className="flex items-center justfy-center gap-2 flex-row">
             {data.map((item : Course) => (
                 <div className="flex flex-col h-[200px] items-center border-2 rounded-md border-md border-slate-200 p-3 justify-center">
-                    <div className="flex flex-row gap-2 items-center justify-center">
+                    <div className="flex flex-row gap-2 w-[400px] items-center justify-center">
                         <img src={item.image} className="w-[120px] h-[120px]" alt="" />
                         <div>
-                            <h3>{item.title}</h3>
+                            <h3 className="text-[30px]">{item.title}</h3>
                             <h3>{item.description}</h3>
+                            <h3 className="text-slate-400">{item.teacher.username}</h3>
                         </div>
                     </div>
                     <div className="flex flex-row">
                         <Link className="p-2 m-2 bg-orange-400 rounded-sm" href={`/course-edit/${item._id}`}>Edit</Link>
+                        <Link className="p-2 m-2 bg-red-500 rounded-sm" href={`/course-del/${item._id}`}>Delete</Link>
                     </div>
                 </div>
             ))}

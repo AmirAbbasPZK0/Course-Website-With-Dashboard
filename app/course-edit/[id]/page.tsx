@@ -89,7 +89,7 @@ const EditCourse = ({params} : {params : {id : string}}) => {
                                 defaultValue=""
                                 {...register("teacher", { required: true })}
                                 >
-                                {usersData.map((item) => (
+                                {usersData.filter(item => item.role === "ADMIN").map((item) => (
                                     <option value={item._id} key={item._id}>{item.username}</option>
                                 ))}
                                 </select>
