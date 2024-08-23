@@ -10,7 +10,6 @@ const AddingCourse = () => {
     const [userData , setUserData] = useState<User | null>(null)
     const [loading , setLoading] = useState(false)
     const {register , handleSubmit , setValue} = useForm()
-    const [imageSelector , setImageSelector] = useState(null)
 
     const router = useRouter()
 
@@ -29,7 +28,8 @@ const AddingCourse = () => {
     
 
     const onSubmit = (e : FieldValues) => {
-        setValue('image' , URL.createObjectURL(imageSelector!))
+
+        console.log(e.image)
 
         fetch("http://localhost:3000/api/courses" , {
             method : "POST",
@@ -68,13 +68,8 @@ const AddingCourse = () => {
                                 <input type="number" {...register("price")} placeholder="Price" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                             </div>
                             <div>
-                                {imageSelector && (
-                                    <img src={URL.createObjectURL(imageSelector!)} width={200} height={200} alt="" />
-                                )}
-                                <label  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Image</label>
-                                <input type="file" onChange={(e) => {
-                                    setImageSelector(e?.target?.files[0]!)
-                                }} placeholder="image" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                                <label  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Image URL</label>
+                                <input type="text"  {...register('image')} placeholder="Image Url" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                             </div>
                             <button type="submit" disabled={loading} className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">{loading ? "Pending..." : "Add Course"}</button>
                         </form>

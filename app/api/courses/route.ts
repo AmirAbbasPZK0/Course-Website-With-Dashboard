@@ -1,13 +1,14 @@
 import { NextResponse } from "next/server";
 import courseModel from "@/models/course";
 import { DataBaseConnection } from "@/utils/db";
+import userModel from "@/models/user";
 
 
 export async function GET(req : Request){
 
     DataBaseConnection()
 
-    const courses = await courseModel.find({}).populate("teacher" , "username")
+    const courses = await courseModel.find({}).populate("teacher" , "username _id")
 
     if(courses){
         return NextResponse.json(courses)

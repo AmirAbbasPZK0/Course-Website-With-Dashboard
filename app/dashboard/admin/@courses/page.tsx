@@ -14,7 +14,7 @@ const AdminUserControl = async () => {
     return (<>
         <div className="flex flex-col items-center gap-2 py-4">
             <div>
-                {/* <Link href="/course-incr">Add Couse +</Link> */}
+                <Link href="/course-incr">Add Couse +</Link>
             </div>
             <div className="flex items-center justfy-center gap-2 flex-row">
             {data.map((item : Course) => (
