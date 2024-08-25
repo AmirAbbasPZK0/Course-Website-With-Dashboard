@@ -33,15 +33,15 @@ const AdminUserControl = () => {
             </div>
             <div className="flex items-center justfy-center gap-2 flex-row">
             {data.map((item : User) => (
-                <div key={item._id} className="flex flex-col items-center border-2 rounded-md border-md border-slate-200 p-3 justify-center">
+                <div key={item?._id} className="flex flex-col items-center border-2 rounded-md border-md border-slate-200 p-3 justify-center">
                     <div className="flex flex-col items-center justify-center">
-                        <h3>{item.username}</h3>
-                        <h3>{item.email}</h3>
-                        <span className={`${item.role === "USER" ? "bg-green-600" : "bg-blue-600"} p-4 rounded-md `}>{item.role}</span>
+                        <h3>{item?.username}</h3>
+                        <h3>{item?.email}</h3>
+                        <span className={`${item.role === "USER" ? "bg-green-600" : "bg-blue-600"} p-4 rounded-md `}>{item?.role}</span>
                     </div>
                     <div className="flex flex-row">
-                        <UpdateButton id={item._id}>Edit</UpdateButton>
-                        <DeleteButton id={item._id}>Delete</DeleteButton>
+                        <UpdateButton id={item?._id}>Edit</UpdateButton>
+                        <DeleteButton id={item?._id}>Delete</DeleteButton>
                     </div>
                 </div>
             ))}
