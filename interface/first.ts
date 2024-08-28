@@ -6,6 +6,7 @@ export interface Course {
     image : string,
     teacher : {
         username : string
+        _id : string
     }
 }
 

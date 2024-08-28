@@ -43,11 +43,11 @@ const DashboardPage = () => {
                         <Link className='p-2 bg-orange-400 rounded-md' href={`/user-edit/${data?._id}`}>Edit</Link>
                     </div>
                     {
-                        data?.role === "ADMIN" ? (
+                        data?.role === "ADMIN" && (
                             <div className='p-4'>
                                 <Link href={"/dashboard/admin"} className='p-3 m-2 rounded-md bg-blue-500'>Go To Admin Panel</Link>
                             </div>
-                        ) : ("")
+                        )
                     }
                 </div>
             </div>

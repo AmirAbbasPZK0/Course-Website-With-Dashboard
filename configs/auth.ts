@@ -1,6 +1,5 @@
 import { hash , compare} from 'bcryptjs'
 import { sign , verify } from "jsonwebtoken";
-import { RequestCookie } from 'next/dist/compiled/@edge-runtime/cookies';
 
 export const hashPassword = async (password : string) => {
     const hashedPassword = await hash(password, 12)

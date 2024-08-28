@@ -10,7 +10,7 @@ const AdminPage = () => {
     const [data , setData] = useState<User | null>(null)
 
     useEffect(()=>{
-        fetch("http://localhost:3000/api/auth/getme")
+        fetch("http://localhost:3000/api/auth/getme" , {method :"GET"})
         .then(res => {
             return res.json()
         })
