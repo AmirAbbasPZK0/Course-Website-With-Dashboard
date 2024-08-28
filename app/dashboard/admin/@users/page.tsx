@@ -1,30 +1,18 @@
-"use client"
 
 import DeleteButton from "@/app/_components/DeleteButton"
 import UpdateButton from "@/app/_components/UpdateButton"
 import { User } from "@/interface/first"
 import Link from "next/link"
-import { useEffect, useState } from "react"
 
-const AdminUserControl = () => {
+const AdminUserControl = async () => {
 
-    const [data , setData] = useState([])
-    const [loading , setLoading] = useState(false)
+    const fetchData = async () => {
+        const res = await fetch("http://localhost:3000/api/users" , {cache : "no-cache"})
+        const data = await res.json()
+        return data
+    }
 
-    useEffect(()=>{
-        setLoading(true)
-        fetch("http://localhost:3000/api/users")
-        .then(res => {
-            return res.json()
-        })
-        .then(data => {
-            setLoading(false)  
-            setData(data)
-        })
-    },[])
-
-    if(loading)
-        return <div>Loading...</div>
+    const data = await fetchData()
 
     return (<>
         <div className="flex flex-col items-center gap-2 py-4">
@@ -39,10 +27,12 @@ const AdminUserControl = () => {
                         <h3>{item?.email}</h3>
                         <span className={`${item.role === "USER" ? "bg-green-600" : "bg-blue-600"} p-4 rounded-md `}>{item?.role}</span>
                     </div>
-                    <div className="flex flex-row">
-                        <UpdateButton id={item?._id}>Edit</UpdateButton>
-                        <DeleteButton id={item?._id}>Delete</DeleteButton>
-                    </div>
+                    {item?.role === "USER" && (
+                        <div className="flex flex-row">
+                            <UpdateButton id={item?._id}>Edit</UpdateButton>
+                            <DeleteButton id={item?._id}>Delete</DeleteButton>
+                        </div>
+                    )}
                 </div>
             ))}
             </div>

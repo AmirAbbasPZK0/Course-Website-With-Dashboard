@@ -33,8 +33,15 @@ const DashboardPage = () => {
                 <h2 className={`${data?.role === "USER" ? "bg-green-400" : "bg-blue-500"} p-2 text-[20px]  rounded-md`}>{data?.role}</h2>
                 <div className="p-3"> 
                 <div className='gap-5'>
-                    <h2 className='text-[20px]'>Username : {data?.username}</h2>
-                    <h2 className='text-[20px]'>Email : {data?.email}</h2>
+                    <div className='flex items-start p-3 border-2 justfiy-start justify-between border-slate-400'>
+                        <div className='flex items-start justify-start flex-col'>
+                            <h2 className='text-[20px]'>Username : {data?.username}</h2>
+                            <h2 className='text-[20px]'>Email : {data?.email}</h2>
+                            <h2 className='text-[20px]'>Firstname : {data?.firstname}</h2>
+                            <h2 className='text-[20px]'>Lastname : {data?.lastname}</h2>
+                        </div>
+                        <Link className='p-2 bg-orange-400 rounded-md' href={`/user-edit/${data?._id}`}>Edit</Link>
+                    </div>
                     {
                         data?.role === "ADMIN" ? (
                             <div className='p-4'>

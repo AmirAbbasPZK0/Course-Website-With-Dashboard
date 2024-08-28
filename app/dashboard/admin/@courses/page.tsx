@@ -1,30 +1,18 @@
-"use client"
-
 import { Course } from "@/interface/first"
 import Link from "next/link"
-import { useEffect, useState } from "react"
 
 
-const AdminUserControl =  () => {
+const AdminUserControl = async () => {
 
-    const [data , setData] = useState<Course[]>([])
-    const [loading , setLoading] = useState(false)
+    
+    const fetchData = async () => {
+        const res = await fetch("http://localhost:3000/api/courses" , {cache : "no-cache"})
+        const data = await res.json()
+        return data
+    }
 
+    const data = await fetchData()
 
-    useEffect(()=>{
-        setLoading(true)
-        fetch("http://localhost:3000/api/courses")
-        .then(res => {
-            return res.json()
-        })
-        .then(data => {
-            setLoading(false)
-            setData(data)
-        })
-    },[])
-
-    if(loading)
-        return <div>Loading...</div>
 
     return (<>
         <div className="flex flex-col items-center gap-2 py-4">
