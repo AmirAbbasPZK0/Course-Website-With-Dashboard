@@ -21,7 +21,7 @@ const AdminUserControl = async () => {
             </div>
             <div className="flex items-center justfy-center gap-2 flex-row">
             {data.map((item : Course) => (
-                <div className="flex flex-col h-[200px] items-center border-2 rounded-md border-md border-slate-200 p-3 justify-center">
+                <div key={item._id} className="flex flex-col h-[200px] items-center border-2 rounded-md border-md border-slate-200 p-3 justify-center">
                     <div className="flex flex-row gap-2 w-[400px] items-center justify-center">
                         <img src={item?.image} className="w-[120px] h-[120px]" alt="" />
                         <div>
