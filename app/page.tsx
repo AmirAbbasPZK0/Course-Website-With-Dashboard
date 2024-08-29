@@ -1,9 +1,10 @@
 import { Course } from "@/interface/first"
+import Link from "next/link"
 
 const Home = async () => {
 
   const fetchCourses = async () => {
-    const res = await fetch("http://localhost:3000/api/courses" , {cache : "no-store"})
+    const res = await fetch("http://localhost:3000/api/courses" , {cache : "no-cache"})
     const data = await res.json()
     return data
   }
@@ -15,14 +16,14 @@ const Home = async () => {
       <h1 className="text-[40px]">Courses</h1>
       <div className="flex flex-wrap gap-2">
           {result.map((item : Course , index : number) => (
-            <div key={index} className="flex flex-col items-center bg-slate-700 rounded-md w-[200px] h-[300px] justify-between">
+            <Link href={`/course/${item?._id}`} key={index} className="flex flex-col items-center bg-slate-700 rounded-md w-[200px] h-[300px] justify-between">
               <img src={item.image} className="w-[100%] h-[200px] rounded-t-md" alt="" />
               <div className="flex items-center flex-col py-3 justify-center">
                 <h1 className="text-[20px]">{item.title}</h1>
                 <h4>{item.price} تومان</h4>
                 <p>{item?.teacher?.username}</p>
               </div>
-            </div>
+            </Link>
           ))}
       </div>
     </div>

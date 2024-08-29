@@ -6,7 +6,7 @@ export async function GET(req : Request , {params} : {params : {id : string}}){
     
     DataBaseConnection()
 
-    const course = await courseModel.findOne({_id : params.id})
+    const course = await courseModel.findOne({_id : params.id}).populate("teacher")
 
     if(course){
         return NextResponse.json(course)
