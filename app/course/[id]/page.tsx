@@ -9,8 +9,6 @@ const CourseDetails = async (props: {params : Promise<{id : string}>}) => {
 
     const data = await fetchData()
 
-    console.log(data)
-
     return (<>
         <div className="flex items-center justify-evenly h-[88vh]">
             <div className="flex flex-col items-start ">
