@@ -1,10 +1,10 @@
 import SignUpForm from "./SignUpForm";
-import { cookies } from "next/headers";
+import { cookies, type UnsafeUnwrappedCookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 const SignUpPage = () => {
 
-    const cookie = cookies().get("token")
+    const cookie = (cookies() as unknown as UnsafeUnwrappedCookies).get("token")
 
     if(cookie){
         redirect("/dashboard")

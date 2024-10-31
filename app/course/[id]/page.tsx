@@ -1,4 +1,5 @@
-const CourseDetails = async ({params} : {params : {id : string}}) => {
+const CourseDetails = async (props: {params : Promise<{id : string}>}) => {
+    const params = await props.params;
 
     const fetchData = async () => {
         const res = await fetch(`http://localhost:3000/api/courses/${params.id}` , {cache : "no-cache"})

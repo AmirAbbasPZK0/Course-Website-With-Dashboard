@@ -1,11 +1,12 @@
 "use client"
 
 import { User } from "@/interface/first";
-import { useEffect, useState } from "react";
+import { useEffect, useState, use } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 
-const UpdateUserPage = ({params} : {params : {id : string}}) => {
+const UpdateUserPage = (props: {params : Promise<{id : string}>}) => {
+    const params = use(props.params);
 
 
     const router = useRouter()
@@ -21,7 +22,7 @@ const UpdateUserPage = ({params} : {params : {id : string}}) => {
             setData(data)
         })
     },[])
-    
+
     const { handleSubmit } = useForm()
 
     const onSubmit = (e : FieldValues) =>{

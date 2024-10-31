@@ -34,7 +34,7 @@ export async function POST(req : Request){
     })
 
     if(user){
-        cookies().set("token" , token , {httpOnly : true , maxAge : 60 * 60 * 24 , path : "/"})
+        (await cookies()).set("token" , token , {httpOnly : true , maxAge : 60 * 60 * 24 , path : "/"})
         return NextResponse.json({message : "User Added"})
     }else{
         return NextResponse.json({message : "Failed to Sign up"})

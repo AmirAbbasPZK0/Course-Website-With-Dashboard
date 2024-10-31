@@ -2,8 +2,9 @@ import courseModel from "@/models/course";
 import { NextResponse } from "next/server";
 import { DataBaseConnection } from "@/utils/db";
 
-export async function GET(req : Request , {params} : {params : {id : string}}){
-    
+export async function GET(req : Request, props: {params : Promise<{id : string}>}) {
+    const params = await props.params;
+
     DataBaseConnection()
 
     const course = await courseModel.findOne({_id : params.id}).populate("teacher")
@@ -13,10 +14,10 @@ export async function GET(req : Request , {params} : {params : {id : string}}){
     }else{
         return NextResponse.json({message : "Failed To Fetch"})
     }
-
 }
 
-export async function PUT(req : Request , {params} : {params : {id : string}}){
+export async function PUT(req : Request, props: {params : Promise<{id : string}>}) {
+    const params = await props.params;
 
     DataBaseConnection()
 
@@ -35,11 +36,11 @@ export async function PUT(req : Request , {params} : {params : {id : string}}){
     }else{
         return NextResponse.json({message : "Failed To Edit Course"})
     }
-
 }
 
-export async function DELETE(_ : any , {params} : {params : {id : string}}){
-    
+export async function DELETE(_ : any, props: {params : Promise<{id : string}>}) {
+    const params = await props.params;
+
     DataBaseConnection()
 
     const deleteCourse = await courseModel.findOneAndDelete({_id : params.id})
@@ -49,5 +50,4 @@ export async function DELETE(_ : any , {params} : {params : {id : string}}){
     }else{
         return NextResponse.json({message : 'Faild to delete course'})
     }
-
 }

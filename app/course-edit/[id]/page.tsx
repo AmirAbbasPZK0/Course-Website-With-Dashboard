@@ -1,11 +1,12 @@
 "use client"
 
 import { User } from "@/interface/first";
-import { useState , useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 
-const EditCourse = ({params} : {params : {id : string}}) => {
+const EditCourse = (props: {params : Promise<{id : string}>}) => {
+    const params = use(props.params);
 
     const [usersData , setUsersData] = useState<User[]>([])
     const [loading , setLoading] = useState(false)

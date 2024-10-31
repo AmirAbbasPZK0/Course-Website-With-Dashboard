@@ -24,7 +24,7 @@ export async function POST(req : Request){
     const token = generateToken({email : user.email})
 
     if(verifiedPassword){
-        cookies().set("token" , token , {httpOnly : true , maxAge : 60 * 60 * 24 , path : "/"})
+        (await cookies()).set("token" , token , {httpOnly : true , maxAge : 60 * 60 * 24 , path : "/"})
         return NextResponse.json({message : `Welcome Back ${user.username}`})
     }else{
         return NextResponse.json({message : "UserName or Email or Password is Not Correct"})

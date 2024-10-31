@@ -4,9 +4,9 @@ import { NextResponse } from "next/server";
 
 export async function POST(){
 
-    DataBaseConnection()
+    await DataBaseConnection();
 
-    cookies().set("token" , "" , {
+    (await cookies()).set("token" , "" , {
         path : "/",
         maxAge : 0
     })

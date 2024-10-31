@@ -1,10 +1,11 @@
 "use client"
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, use } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 
-const UpdateUserPage = ({params} : {params : {id : string}}) => {
+const UpdateUserPage = (props: {params : Promise<{id : string}>}) => {
+    const params = use(props.params);
 
     const router = useRouter()
     const [loading , setLoading] = useState<boolean>(false)
@@ -21,7 +22,7 @@ const UpdateUserPage = ({params} : {params : {id : string}}) => {
             setValue("role" , data.role)
         })
     },[])
-    
+
     const {register , handleSubmit , setValue} = useForm()
 
     const onSubmit = (e : FieldValues) =>{
