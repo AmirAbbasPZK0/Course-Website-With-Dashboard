@@ -1,5 +1,8 @@
-## Attention
+# Attention
 
-# For running this project you need first to have mongoDB Database on your machine then
+### For running this project on your computer first you need to have mongoDB,
 
-- For Starting Your need to run npm run dev and after that everything will run automaticly
+--- 
+npm i 
+npm run dev
+---
