@@ -8,6 +8,8 @@ export default function middleware(req : NextRequest){
 
     // console.log(cookie , "This message is from middleware");
 
+    console.log("This message is from middleware")
+
     if(!req.cookies.has("token")){
         return NextResponse.redirect(new URL("/" , req.url))
     }
