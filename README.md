@@ -1,6 +1,6 @@
 # Attention
 
-### For running this project on your computer first you need to have mongoDB,
+### For running this project on your computer, you need to have mongoDB first
 
 
 - npm i 
